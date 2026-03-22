@@ -1,0 +1,16 @@
+﻿@model WebDevFinalProject.Models.Exercise
+
+@{
+    ViewData["Title"] = "Exercise Details";
+}
+
+<h1>Exercise Details</h1>
+
+<div class="card p-3">
+    <h3>@Model.Name</h3>
+    <p><strong>Category:</strong> @Model.Category</p>
+    <p><strong>Duration:</strong> @Model.Duration minutes</p>
+    <p><strong>Difficulty:</strong> @Model.Difficulty</p>
+</div>
+
+<a class="btn btn-secondary mt-3" asp-controller="Exercise" asp-action="Index">Back to Exercises</a>
