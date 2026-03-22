@@ -1,0 +1,38 @@
+﻿@model List<WebDevFinalProject.Models.Exercise>
+
+@{
+    ViewData["Title"] = "Exercises";
+}
+
+<h1>Exercises</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Duration (min)</th>
+            <th>Difficulty</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var exercise in Model)
+        {
+            <tr>
+                <td>@exercise.Name</td>
+                <td>@exercise.Category</td>
+                <td>@exercise.Duration</td>
+                <td>@exercise.Difficulty</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary"
+                       asp-controller="Exercise"
+                       asp-action="Details"
+                       asp-route-id="@exercise.Id">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
