@@ -6,6 +6,8 @@
 
 <h1>Exercises</h1>
 
+<a asp-action="Add" class="btn btn-dark mr-2">Add an Exercise</a>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -17,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var exercise in Model)
+        @foreach (Exercise exercise in Model)
         {
             <tr>
                 <td>@exercise.Name</td>
