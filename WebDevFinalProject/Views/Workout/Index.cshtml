@@ -1,16 +1,38 @@
-﻿@{
+﻿@model List<WebDevFinalProject.Models.Workout>
+
+@{
     ViewData["Title"] = "Workouts";
 }
 
 <h1>Workouts</h1>
 
-<p>Here are some example workout routines:</p>
+<a asp-action="Add" class="btn btn-dark mr-2">Add an Workout</a>
 
-<ul>
-    <li>Full Body Workout</li>
-    <li>Upper Body Day</li>
-    <li>Leg Day</li>
-    <li>Cardio Session</li>
-</ul>
-
-<a class="btn btn-primary" asp-action="Details">View Sample Workout</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>WorkoutCategory</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Workout workout in Model)
+        {
+            <tr>
+                <td>@workout.Name</td>
+                <td>@workout.WorkoutCategory</td>
+                <td>@workout.Date</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary"
+                       asp-controller="Workout"
+                       asp-action="Details"
+                       asp-route-id="@workout.Id">
+                        Details
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

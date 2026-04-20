@@ -12,5 +12,6 @@ namespace WebDevFinalProject.Data
         }
 
         public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
     }
 }
