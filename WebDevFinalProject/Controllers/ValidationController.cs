@@ -1,0 +1,43 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using WebDevFinalProject.Data;
+
+namespace WebDevFinalProject.Controllers
+{
+    public class ValidationController : Controller
+    {
+        private ApplicationDbContext context { get; set; }
+        public ValidationController(ApplicationDbContext ctx) => context = ctx;
+
+        public JsonResult CheckName(string name)
+        {
+
+            bool exists = context.Exercises.Any(t => t.Name == name);
+
+            if (exists)
+            {
+                return Json("Exercise is already entered.");
+            }
+
+            return Json(true);
+        }
+
+        public JsonResult CheckDate(string date)
+        {
+            if (!DateTime.TryParse(date, out DateTime parsedDate))
+            {
+                return Json(false);
+            }
+
+            bool exists = context.Workouts.Any(t => t.Date == parsedDate);
+
+            if (exists)
+            {
+                return Json(null);
+            }
+
+            return Json(true);
+        }
+
+
+    }
+}

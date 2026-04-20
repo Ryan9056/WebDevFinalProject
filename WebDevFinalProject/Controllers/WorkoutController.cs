@@ -1,17 +1,70 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebDevFinalProject.Data;
+using WebDevFinalProject.Migrations;
+using WebDevFinalProject.Models;
 
 namespace WebDevFinalProject.Controllers
 {
     public class WorkoutController : Controller
     {
+        private ApplicationDbContext data { get; set; }
+        public WorkoutController(ApplicationDbContext ctx) => data = ctx;
+
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var workouts = data.Workouts.OrderBy(t => t.Date).ToList();
+
+            return View(workouts);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+
+            var workout = data.Workouts.Find(id);
+            var exercises = data.Exercises.Where(t => t.Category == workout.WorkoutCategory).ToList();
+
+            return View(workout);
+        }
+
+        [HttpGet]
+        public ViewResult Add() => View(new Workout());
+
+
+        [HttpPost]
+        public IActionResult Add(Workout workout)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                bool exists = data.Workouts.Any(t => t.Date == workout.Date);
+
+                if (exists)
+                {
+                    ModelState.AddModelError("", "Workout already exists");
+                    return View(workout);
+                }
+                data.Workouts.Add(workout);
+                data.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please correct the errors");
+                return View(workout);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Related(int id)
+        {
+
+            var workout = data.Workouts.Find(id);
+            var exercises = data.Exercises.Where(t => t.Category == workout.WorkoutCategory).ToList();
+
+            return View(exercises);
         }
     }
 }
