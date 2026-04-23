@@ -2,8 +2,74 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to FitTrack</h1>
-    <p class="lead">Track workouts, explore exercises, and stay consistent with your fitness goals.</p>
-    <a class="btn btn-primary" asp-controller="Exercise" asp-action="Index">View Exercises</a>
+<div class="hero-section text-center text-white rounded-4 p-5 mb-5">
+    <h1 class="display-4 fw-bold">Welcome to FitTrack</h1>
+
+    <p class="lead mt-3">
+        FitTrack is a fitness tracking website designed to help organize workouts and keep everything in one place.
+    </p>
+
+    <p>
+        Users can browse exercises, add their own, and create workouts based on categories like strength, cardio, and core.
+        The goal is to keep things simple, organized, and easy to use.
+    </p>
+
+    <div class="mt-4">
+        <a class="btn btn-light btn-lg me-2" asp-controller="Exercise" asp-action="Index">View Exercises</a>
+        <a class="btn btn-outline-light btn-lg" asp-controller="Workout" asp-action="Index">View Workouts</a>
+    </div>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <a asp-controller="Exercise" asp-action="Index"
+           class="text-decoration-none text-dark d-block h-100">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="card-title">Exercises</h3>
+                    <p class="card-text">
+                        Store and view exercises with details like category, duration, and difficulty level.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a asp-controller="Workout" asp-action="Index"
+           class="text-decoration-none text-dark d-block h-100">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="card-title">Workouts</h3>
+                    <p class="card-text">
+                        Create and track workouts by date so you can easily keep up with your routine.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a asp-controller="Home" asp-action="About"
+           class="text-decoration-none text-dark d-block h-100">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="card-title">Stay Consistent</h3>
+                    <p class="card-text">
+                        Learn more about the project and how it was built using ASP.NET Core MVC.
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+<div class="mt-5 text-center">
+    <h2>Why FitTrack?</h2>
+    <p class="text-muted mx-auto" style="max-width: 800px;">
+        FitTrack was created to show how a hobby like fitness can be turned into a simple and organized web application.
+        It combines ASP.NET Core MVC, Entity Framework Core, and SQL Server to demonstrate both front-end and back-end development.
+    </p>
 </div>

@@ -23,6 +23,11 @@ namespace WebDevFinalProject.Controllers
             return View();
         }
 
+        public IActionResult AboutMe()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

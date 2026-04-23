@@ -5,12 +5,15 @@ namespace WebDevFinalProject.Controllers
 {
     public class ValidationController : Controller
     {
-        private ApplicationDbContext context { get; set; }
-        public ValidationController(ApplicationDbContext ctx) => context = ctx;
+        private readonly ApplicationDbContext context;
+
+        public ValidationController(ApplicationDbContext ctx)
+        {
+            context = ctx;
+        }
 
         public JsonResult CheckName(string name)
         {
-
             bool exists = context.Exercises.Any(t => t.Name == name);
 
             if (exists)
@@ -25,19 +28,17 @@ namespace WebDevFinalProject.Controllers
         {
             if (!DateTime.TryParse(date, out DateTime parsedDate))
             {
-                return Json(false);
+                return Json("Please enter a valid date.");
             }
 
-            bool exists = context.Workouts.Any(t => t.Date == parsedDate);
+            bool exists = context.Workouts.Any(t => t.Date.Date == parsedDate.Date);
 
             if (exists)
             {
-                return Json(null);
+                return Json("A workout on this date is already entered.");
             }
 
             return Json(true);
         }
-
-
     }
 }
