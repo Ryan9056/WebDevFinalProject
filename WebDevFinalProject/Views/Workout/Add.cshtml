@@ -1,39 +1,40 @@
 ﻿@model WebDevFinalProject.Models.Workout
 
-@section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
-
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Add Workout";
 }
 
-<h2 class="p-2">Add Workout</h2>
+<div class="card shadow-sm border-0 p-4">
+    <h2 class="mb-4">Add Workout</h2>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-<form asp-action="Add" method="post">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" type="text" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="WorkoutCategory"></label>
-        <input asp-for="WorkoutCategory" class="form-control" />
-        <span asp-validation-for="WorkoutCategory" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Date"></label>
-        <input asp-for="Date" class="form-control" />
-        <span asp-validation-for="Date" class="text-danger"></span>
-    </div>
+    <form asp-action="Add" method="post">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" type="text" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
 
-    <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label asp-for="WorkoutCategory" class="form-label"></label>
+            <input asp-for="WorkoutCategory" class="form-control" />
+            <span asp-validation-for="WorkoutCategory" class="text-danger"></span>
+        </div>
 
-    <button type="submit" class="btn btn-dark mr-2">Add</button>
-    <a asp-action="Index" class="btn btn-dark">Cancel</a>
-</form>
+        <div class="mb-3">
+            <label asp-for="Date" class="form-label"></label>
+            <input asp-for="Date" type="date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
 
+        <input type="hidden" asp-for="Id" />
+
+        <button type="submit" class="btn btn-dark me-2">Add</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

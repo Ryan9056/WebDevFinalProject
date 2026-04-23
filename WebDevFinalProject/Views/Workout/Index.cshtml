@@ -4,35 +4,46 @@
     ViewData["Title"] = "Workouts";
 }
 
-<h1>Workouts</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Workouts</h1>
+    <p class="text-muted">Total workouts: @Model.Count</p>
+    <a asp-action="Add" class="btn btn-dark">Add Workout</a>
+</div>
 
-<a asp-action="Add" class="btn btn-dark mr-2">Add an Workout</a>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>WorkoutCategory</th>
-            <th>Date</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Workout workout in Model)
-        {
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No workouts have been added yet.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-hover shadow-sm">
+        <thead class="table-dark">
             <tr>
-                <td>@workout.Name</td>
-                <td>@workout.WorkoutCategory</td>
-                <td>@workout.Date</td>
-                <td>
-                    <a class="btn btn-sm btn-outline-primary"
-                       asp-controller="Workout"
-                       asp-action="Details"
-                       asp-route-id="@workout.Id">
-                        Details
-                    </a>
-                </td>
+                <th>Name</th>
+                <th>Workout Category</th>
+                <th>Date</th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var workout in Model)
+            {
+                <tr>
+                    <td>@workout.Name</td>
+                    <td>@workout.WorkoutCategory</td>
+                    <td>@workout.Date.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary"
+                           asp-controller="Workout"
+                           asp-action="Details"
+                           asp-route-id="@workout.Id">
+                            Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

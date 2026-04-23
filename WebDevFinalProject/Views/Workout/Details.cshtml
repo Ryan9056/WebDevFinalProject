@@ -4,20 +4,21 @@
     ViewData["Title"] = "Workout Details";
 }
 
-<h1>Workout Details</h1>
+<div class="card shadow-sm border-0 p-4">
+    <h1 class="mb-3">Workout Details</h1>
 
-<div class="card p-3">
     <h3>@Model.Name</h3>
     <p><strong>Workout Category:</strong> @Model.WorkoutCategory</p>
-    <p><strong>Date:</strong> @Model.Date</p>
+    <p><strong>Date:</strong> @Model.Date.ToShortDateString()</p>
+
+    <a class="btn btn-primary mt-3 me-2"
+       asp-controller="Workout"
+       asp-action="Related"
+       asp-route-id="@Model.Id">
+        View Related Exercises
+    </a>
+
+    <a class="btn btn-secondary mt-3" asp-controller="Workout" asp-action="Index">
+        Back to Workouts
+    </a>
 </div>
-
-<a class="btn btn-secondary mt-3"
-   asp-controller="Workout"
-   asp-action="Related"
-   asp-route-id="@Model.Id">
-    Related Exercises
-</a>
-
-
-<a class="btn btn-secondary mt-3" asp-controller="Workout" asp-action="Index">Back to Workouts</a>
